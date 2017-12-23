@@ -1374,3 +1374,8 @@
     for item in coins-array!
         if it == item.symbol => return item?id
     return null
+
+@get-contract-decimals-from-symbol=-> 
+    for item in tokens-list! || []
+        if it?toLocaleLowerCase! == item.id?toLocaleLowerCase! => return item.decimals
+

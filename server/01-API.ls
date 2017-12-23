@@ -15,7 +15,9 @@ route \/ticker/:symbol .get (req,res,next)->
 			price = inp[0].price_eth
 			if price
 				BN = new BigNumber price
-				out = BN.mul('1000000000000000000').toString!
+				decimal = get-contract-decimals-from-symbol sym
+				console.log \decimal: decimal
+				out = BN.mul('1000000000000000000').div( 10^decimal ).toString!
 				res.end JSON.stringify priceWei: out
 
 			else 	

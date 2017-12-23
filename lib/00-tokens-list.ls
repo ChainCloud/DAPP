@@ -73,6 +73,11 @@
 	for item in tokens-list! || []
 		if it?toLocaleLowerCase! == item.address?toLocaleLowerCase! => return item.decimals
 
+@get-contract-decimals-from-symbol=-> 
+	for item in tokens-list! || []
+		if it?toLocaleLowerCase! == item.id?toLocaleLowerCase! => return item.decimals
+
+
 @get-token-price=(address)->
 	id = get-contract-id address
 	prices = state.get \prices

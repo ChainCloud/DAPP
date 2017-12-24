@@ -1,6 +1,9 @@
 @tokens-list=-> new Array do
 	* decimals:18 id:\LEND address:\0x80fB784B7eD66730e8b1DBd9820aFD29931aab03 name:'LEND' link:'https://ethlend.io' description:'Fully decentralized peer to peer lending on the Ethereum Blockchain.'
 	
+	* decimals:18 id:\MINT address:\0x03C073a2b425A6Af630ddb75eB9a43A6FA873dcc name:'TEST' link:'https://ethlend.io' description:'Test ERC20 contract for dev.'
+
+
 	* decimals:18 id:\EOS  address:\0x86fa049857e0209aa7d9e616f7eb3b3b78ecfdb0 name:'EOS' link:'https://eos.io/' description:'Infrastructure for Decentralized Applications' 
 	* decimals:18 id:\QTUM address:\0x9a642d6b3368ddc662CA244bAdf32cDA716005BC name:'Qtum' link:'https://qtum.org/' description:'Build Decentralized Applications that Simply Work Executable on mobile devices, compatible with major existing blockchain ecosystem' 
 	* decimals:18 id:\OMG  address:\0xd26114cd6EE289AccF82350c8d8487fedB8A0C07 name:'OmiseGO' link:'https://omisego.network/' description:'OmiseGO is a public Ethereum-based financial technology for use in mainstream digital wallets, that enables real-time, peer-to-peer value exchange and payment services agnostically across jurisdictions and organizational silos, and across both fiat money and decentralized currencies.' 

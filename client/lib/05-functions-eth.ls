@@ -7,8 +7,8 @@
 @ticker = call:(method)~>(...args)~> web3?eth.contract(config.TICKER-ABI).at(state.get(\ETH_TICKER_ADDRESS))[method](...args)
 @init   = (obj)~> (method)~> obj[method] = obj[\call](method)
 
-map init(ledger), ["mainAddress", "registrarAddress", "repTokenAddress", "getLr", "getLrFunded", "ethTickerAddress", "newLrAndSetData", "ensRegistryAddress", "unlockRepTokens", "totalLrCount", "lockRepTokens", "addRepTokens", "newLr", "getLrCount", "whereToSendFee", "borrowerFeeAmount", "getLrFundedCount", "getRepTokenAddress", "approveRepTokens", "burnRepTokens", "getFeeSum"]
-map init(lr), ["currentType", "wasEthWhenCreated", "creator", "changeMainAddress", "isEns", "mainAddress", "registrarAddress", "lenderFeeAmount", "changeLedgerAddress", "isCanDefault", "token_smartcontract_address", "getBorrower", "getTokenSmartcontractAddress", "ethTickerAddress", "token_infolink", "getCurrentState", "waitingForPayback", "getNextInstallmentDaysLeft", "premium_wei", "getNeededSumByBorrower", "installments_period_days", "installment_paid", "token_amount", "waitingForLender", "installments_count", "getTokenAmount", "ensRegistryAddress", "isRep", "wanted_wei", "borrower", "getTokenInfoLink", "getTokenName", "setData", "token_name", "getLender", "ens_domain_hash", "cancell", "whereToSendFee", "getInstallmentsPassed", "getNeededSumByLender", "lender", "getInstallmentPenalty", "start", "getEnsDomainHash", "requestDefault", "currency", "returnTokens", "convertToEth"]
+map init(ledger), ["mainAddress", "registrarAddress", "lenderFeeAmount", "getLr", "getLrFunded", "ethTickerAddress", "tokenPriceCheckerAddress", "newLrAndSetData", "ensRegistryAddress", "totalLrCount", "newLr", "getLrCount", "whereToSendFee", "borrowerFeeAmount", "getLrFundedCount", "getFeeSum"]
+map init(lr), ["currentType", "wasEthWhenCreated", "creator", "changeMainAddress", "isEns", "currentState", "mainAddress", "changeLedgerAddress", "isCanDefault", "token_smartcontract_address", "getBorrower", "getTokenSmartcontractAddress", "token_infolink", "getCurrentState", "waitingForPayback", "getNextInstallmentDaysLeft", "premium_wei", "getNeededSumByBorrower", "installments_period_days", "installment_paid", "token_amount", "waitingForLender", "installments_count", "getTokenAmount", "isRep", "wanted_wei", "borrower", "getTokenInfoLink", "getTokenName", "setData", "token_name", "getLender", "ens_domain_hash", "handleTokenPrice", "cancell", "getInstallmentsPassed", "getNeededSumByLender", "lender", "getInstallmentPenalty", "start", "getEnsDomainHash", "requestDefault", "maxPrice", "currency", "returnTokens", "convertToEth"]
 map init(ticker), ["lastTimeRateUpdated", "isNeedToUpdateEthToUsdRate", "oraclizeFee", "ethPriceInUsd", "getNow", "getEthToUsdRate", "updateEthToUsdRate", "ethPriceInUsdInt", "newOraclizeQuery", "priceReceived"]
 
 @lr-keys=-> 
@@ -43,7 +43,7 @@ map init(ticker), ["lastTimeRateUpdated", "isNeedToUpdateEthToUsdRate", "oracliz
 
 	lr.getCurrentState(address) -> 			out.State = +lilNum-toStr &1
 	lr.getLender(address) -> 				out.Lender = &1
-	lr.getTokenAmount(address) -> 			out.TokenAmount =  +lilNum-toStr &1
+	lr.token_amount(address) ->     			out.TokenAmount =  +lilNum-toStr &1
 	lr.isEns(address) ->					out.isEns = &1
 	lr.isRep(address) ->					out.isRep = &1
 	lr.getEnsDomainHash(address) ->			out.EnsDomainHash = &1

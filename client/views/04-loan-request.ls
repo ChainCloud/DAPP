@@ -185,8 +185,11 @@ Template.loan_request.created=->
         state.set \loading-class, \hidden
         &1.isToken = (!&1?isEns)&&(!&1?isRep)
         TA  = new BigNumber &1.TokenAmount
-        dec = new BigNumber 10^get-contract-decimals(state.get(\token-address)||&1?TokenSmartcontractAddress||0)
-        &1.TokenAmount = +lilNum-toStr TA.dividedBy dec
+        Tname = &1?TokenName
+        dec =~> new BigNumber 10^get-contract-decimals-from-symbol()
+        console.log \dec: dec!, \TA: TA, \+lilNum-toStr, lilNum-toStr(TA.div dec!)
+
+        # &1.TokenAmount = +lilNum-toStr TA.div dec!
         state.set \lr, &1
 
         state.set \lr-Lender   &1?Lender
@@ -364,7 +367,7 @@ Template.loan_request.events do
             dec = new BigNumber(10)
             ex = get-contract-decimals state.get(\token-address)
             
-            out.tokamount = lilNum-toStr  tokens.mul(dec.pow(ex))
+            out.tokamount = tokens.mul(dec.pow(ex)).to-precision!
 
         else out.tokamount = 0
 
@@ -377,17 +380,8 @@ Template.loan_request.events do
 
 
 
-        console.log \out.ethamount, out.ethamount
-        console.log \out.tokamount, out.tokamount
-        console.log \out.premium, out.premium
-        console.log \out.tokname, out.tokname
-        console.log \out.link, out.link
-        console.log \out.smart, out.smart
-        console.log \out.installments_count, out.installments_count
-        console.log \out.installments_period, out.installments_period
-        console.log \out.ensDomainHash, out.ensDomainHash
-
-        lr.setData(state.get \address )(
+        console.log \SET-DATA-out:::, out
+        web3.eth.contract(config.LR-ABI).at(state.get \address).set-data do
             out.ethamount,
             out.tokamount,                    
             out.premium,             
@@ -397,8 +391,9 @@ Template.loan_request.events do
             out.installments_count,
             out.installments_period,
             out.ensDomainHash,
+            value: 100000000000000000, gas:455000, gas-price: 20_000_000_000
             goto-success-cb
-        )  
+        
 
 
     'click .lender-pay':-> 

@@ -151,7 +151,7 @@
 
 @eth-to-wei =(str)->
     bn = new BigNumber(str)
-    bn.times(1000_000_000_000_000_000).to-fixed!
+    bn.times(1000_000_000_000_000_000).to-precision!
 
 @bigNum-add =(arr1,arr2)->
     a1 = new BigNumber(0)
